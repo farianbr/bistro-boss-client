@@ -1,4 +1,4 @@
-import Button from "../../Components/Button/Button";
+import CardButton from "../../Components/Button/CardButton";
 import SectionTitle from "../../Components/SectionTitle/SectionTitle";
 import featuredImg from "../../assets/home/featured.jpg";
 import "./Home.css"
@@ -28,9 +28,9 @@ const Featured = () => {
             voluptate delectus dolores odio amet, nostrum nobis ipsum omnis.
             Pariatur, a!
           </p>
-          <Button
+          <CardButton
           name="read more"
-          ></Button>
+          ></CardButton>
         </div>
       </div>
       </div>

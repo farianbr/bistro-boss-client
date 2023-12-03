@@ -1,18 +1,21 @@
-import { useEffect, useState } from "react";
+// import { useEffect, useState } from "react";
 import SectionTitle from "../../Components/SectionTitle/SectionTitle";
 import MenuList from "../Shared/MenuList/MenuList";
-import Button from "../../Components/Button/Button";
+import CardButton from "../../Components/Button/CardButton";
+import useMenu from "../../hooks/useMenu";
 
 
 const PopularMenu = () => {
 
-    const [menu, setMenu] = useState([])
+    // const [menu, setMenu] = useState([])
 
-    useEffect(() => {
-        fetch("menu.json")
-        .then(res => res.json())
-        .then(data => setMenu(data.filter(item => item.category === "popular")))
-    },[])
+    // useEffect(() => {
+    //     fetch("menu.json")
+    //     .then(res => res.json())
+    //     .then(data => setMenu(data.filter(item => item.category === "popular")))
+    // },[])
+
+    const menu = useMenu().filter(item => item.category === "popular")
 
     return (
         <section>
@@ -26,9 +29,9 @@ const PopularMenu = () => {
                 item={item}
                 ></MenuList>)}
             </div>
-            <Button
+            <CardButton
             name="view full menu"
-            ></Button>
+            ></CardButton>
         </section>
     );
 };

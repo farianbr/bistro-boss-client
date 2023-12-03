@@ -1,4 +1,4 @@
-import Button from "../../../Components/Button/Button";
+import CardButton from "../../../Components/Button/CardButton";
 
 const ItemCard = (item) => {
     const {name, recipe, image} = item.item
@@ -14,9 +14,9 @@ const ItemCard = (item) => {
         <h2 className="card-title">{name}</h2>
         <p className="h-20">{recipe}</p>
         <div className="card-actions">
-        <Button
+        <CardButton
         name="Add to cart"
-        ></Button>
+        ></CardButton>
         </div>
       </div>
     </div>
