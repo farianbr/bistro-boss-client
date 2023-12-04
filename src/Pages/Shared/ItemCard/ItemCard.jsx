@@ -3,7 +3,7 @@ import CardButton from "../../../Components/Button/CardButton";
 const ItemCard = (item) => {
     const {name, recipe, image} = item.item
   return (
-    <div className="card w-96 bg-zinc-100 shadow-xl">
+    <div className="card w-96 bg-zinc-100 shadow-xl mb-6">
       <figure className="">
         <img
           src={image}

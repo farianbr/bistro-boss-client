@@ -9,6 +9,8 @@ import useMenu from "../../hooks/useMenu";
 import MenuList from "../Shared/MenuList/MenuList";
 import SectionButton from "../../Components/Button/SectionButton";
 import MenuCategory from "../Shared/MenuCategory/MenuCategory";
+import { Link } from "react-router-dom";
+import { Helmet } from "react-helmet";
 
 const Menu = () => {
   const menu = useMenu();
@@ -20,6 +22,10 @@ const Menu = () => {
   const soupMenu = menu.filter((item) => item.category === "soup");
   return (
     <div>
+      <Helmet>
+        <meta charSet="utf-8" />
+        <title>Sultans Dine | Menu</title>
+      </Helmet>
       <section>
       <SectionCover img={banner} title="our menu" details="WOULD YOU LIKE TO TRY A DISH?" transparent={true} pageCover={true} ></SectionCover>
       <SectionTitle subHeading="Don't miss" heading="today's offer" ></SectionTitle>
@@ -28,7 +34,7 @@ const Menu = () => {
           <MenuList key={item._id} item={item}></MenuList>
         ))}
       </div>
-      <SectionButton name="order your favourite food"></SectionButton>
+      <Link to="/order"><SectionButton name="order your favourite food"></SectionButton></Link>
       </section>
       <MenuCategory img={dessertBg} menu={desertsMenu} menuDetails={menuDetails} menuTitle="desserts"></MenuCategory>
       <MenuCategory img={pizzaBg} menu={pizzaMenu} menuDetails={menuDetails} menuTitle="pizza"></MenuCategory>

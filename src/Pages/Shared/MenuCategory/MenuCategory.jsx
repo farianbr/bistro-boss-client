@@ -1,6 +1,7 @@
 import MenuList  from "../MenuList/MenuList";
 import SectionCover from "../../Home/SectionCover";
 import SectionButton from "../../../Components/Button/SectionButton";
+import { Link } from "react-router-dom";
 
 
 const MenuCategory = ({menu, img, menuTitle, menuDetails}) => {
@@ -12,7 +13,7 @@ const MenuCategory = ({menu, img, menuTitle, menuDetails}) => {
           <MenuList key={item._id} item={item}></MenuList>
         ))}
       </div>
-      <SectionButton name="order your favourite food"></SectionButton>
+      <Link to="/order"><SectionButton name="order your favourite food"></SectionButton></Link>
       </section>
     );
 };

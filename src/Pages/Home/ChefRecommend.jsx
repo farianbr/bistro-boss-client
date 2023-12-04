@@ -18,7 +18,7 @@ const ChefRecommend = () => {
             subHeading='Should Try'
             heading='Farian recommends'
             ></SectionTitle>
-            <div className="grid md:grid-cols-3 place-items-center my-16">
+            <div className="grid md:grid-cols-3 place-items-center mb-10 mt-16">
                 {menu.map(item => <ItemCard
                 key={item._id}
                 item={item}

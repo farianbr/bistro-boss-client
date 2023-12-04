@@ -3,6 +3,7 @@ import SectionTitle from "../../Components/SectionTitle/SectionTitle";
 import MenuList from "../Shared/MenuList/MenuList";
 import CardButton from "../../Components/Button/CardButton";
 import useMenu from "../../hooks/useMenu";
+import { Link } from "react-router-dom";
 
 
 const PopularMenu = () => {
@@ -29,9 +30,9 @@ const PopularMenu = () => {
                 item={item}
                 ></MenuList>)}
             </div>
-            <CardButton
+            <Link to="/menu"><CardButton
             name="view full menu"
-            ></CardButton>
+            ></CardButton></Link>
         </section>
     );
 };
