@@ -1,6 +1,12 @@
+import { useContext } from "react";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../../../providers/AuthProvider";
+import profileImg from "../../../assets/others/profile.png"
 
 const NavBar = () => {
+
+  const {user, logout} = useContext(AuthContext)
+
   return (
     <div>
       <div className="navbar max-w-screen-2xl mx-auto fixed z-10 bg-black bg-opacity-40 text-white">
@@ -45,6 +51,9 @@ const NavBar = () => {
             </li>
             <li>
               <Link to="/order">Shop Now</Link>
+            </li>
+            <li>
+              {user ? <span onClick={logout} className="uppercase h-9" to="/">Sign Out <img className="w-5 rounded-full" src={profileImg} alt="" srcSet="" /> </span> :<Link to="/login">Login</Link>}
             </li>
           </ul>
         </div>
