@@ -2,10 +2,13 @@ import { useContext } from "react";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../../providers/AuthProvider";
 import profileImg from "../../../assets/others/profile.png"
+import useCart from "../../../hooks/useCart";
+import { BsFillCartDashFill } from 'react-icons/bs';
 
 const NavBar = () => {
 
   const {user, logout} = useContext(AuthContext)
+  const [cart] = useCart()
 
   return (
     <div>
@@ -53,7 +56,10 @@ const NavBar = () => {
               <Link to="/order">Shop Now</Link>
             </li>
             <li>
-              {user ? <span onClick={logout} className="uppercase h-9" to="/">Sign Out <img className="w-5 rounded-full" src={profileImg} alt="" srcSet="" /> </span> :<Link to="/login">Login</Link>}
+              {user ? <span onClick={logout} className=" h-9" to="/">Sign Out <img className="w-5 rounded-full" src={profileImg} alt="" srcSet="" /> </span> :<Link to="/login">Login</Link>}
+            </li>
+            <li>
+              {user && <span className=" h-9"><Link className="flex items-center justify-center" to="/dashboard/my-cart"><BsFillCartDashFill /><sup>{cart?.length || 0}</sup></Link></span>}
             </li>
           </ul>
         </div>
