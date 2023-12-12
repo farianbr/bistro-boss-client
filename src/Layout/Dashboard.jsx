@@ -5,23 +5,23 @@ import { MdOutlinePayment } from "react-icons/md";
 import { FaCalendarAlt } from "react-icons/fa";
 import { IoMenu } from "react-icons/io5";
 import { FaShoppingBag } from "react-icons/fa";
+import useCart from "../hooks/useCart";
 
 const Dashboard = () => {
+  const [cart] = useCart()
   return (
     <div>
       <div className="drawer lg:drawer-open">
         <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
-        <div className="drawer-content flex flex-col items-center justify-center">
+        <div className="drawer-content flex flex-col justify-center">
           {/* Page content here */}
           <Outlet></Outlet>
-          <h2>This is Dashboard</h2>
           <label
             htmlFor="my-drawer-2"
             className="btn btn-primary drawer-button lg:hidden"
           >
             Open drawer
           </label>
-          <h2>Welcome</h2>
         </div>
         <div className="drawer-side">
           <label
@@ -41,7 +41,7 @@ const Dashboard = () => {
               <Link><MdOutlinePayment></MdOutlinePayment>Payment History</Link>
             </li>
             <li>
-            <Link to="/dashboard/my-cart"><BsFillCartDashFill /> My Cart</Link>
+            <Link to="/dashboard/my-cart"><BsFillCartDashFill /> My Cart #{cart?.length || 0}</Link>
             </li>
             <div className="divider"></div>
             <li>
