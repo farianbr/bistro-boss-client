@@ -4,6 +4,7 @@ import bgImg2 from "../../assets/others/authentication2.png";
 import { useForm } from "react-hook-form"
 import { AuthContext } from "../../providers/AuthProvider";
 import { useLocation, useNavigate } from "react-router-dom";
+import SocialLogin from "../../Components/SocialLogin/SocialLogin";
 
 const Login = () => {
   const { register, handleSubmit } = useForm()
@@ -71,6 +72,7 @@ const Login = () => {
                 Create a New Account
               </a>
             </div>
+            <div className="text-center"><SocialLogin></SocialLogin></div>
           </div>
           <div className="text-center lg:text-left">
             <img src={bgImg2} alt="" srcSet="" />

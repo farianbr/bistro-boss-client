@@ -1,24 +1,32 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import bgImg from "../../assets/others/authentication.png";
 import bgImg2 from "../../assets/others/authentication2.png";
 import { useForm } from "react-hook-form";
 import { AuthContext } from "../../providers/AuthProvider";
 import { useNavigate } from "react-router-dom";
+import UserDB from "../../Components/userDB/userDB";
+import SocialLogin from "../../Components/SocialLogin/SocialLogin";
 
 const Login = () => {
   const { register, handleSubmit } = useForm();
-  const {createUser} = useContext(AuthContext)
-  const navigate = useNavigate()
+  const { createUser } = useContext(AuthContext);
+  const [error, setError] = useState(null);
+  const navigate = useNavigate();
 
   const onSubmit = (data) => {
     console.log(data);
-    createUser(data.email,data.password)
+    createUser(data.email, data.password)
     .then((userCredential) => {
-      // Signed in 
+      // Signed in
       const user = userCredential.user;
       console.log(user);
-      navigate("/")
+      UserDB(data.name, data.email, data.password);
+      navigate("/");
     })
+    .catch(err => {
+      setError(err.message)
+    })
+    ;
   };
 
   return (
@@ -35,6 +43,16 @@ const Login = () => {
             <span className="text-3xl font-bold text-center">Sign Up</span>
 
             <form onSubmit={handleSubmit(onSubmit)} className="card-body">
+              <div className="form-control">
+                <label className="label">
+                  <span className="label-text">Name</span>
+                </label>
+                <input
+                  {...register("name", { required: true })}
+                  placeholder="name"
+                  className="input input-bordered"
+                />
+              </div>
               <div className="form-control">
                 <label className="label">
                   <span className="label-text">Email</span>
@@ -60,7 +78,9 @@ const Login = () => {
                   </a>
                 </label>
               </div>
+              
               <div className="form-control mt-6">
+              {error && <span className="text-xs mb-3 text-red-600 text-center">{error}</span>}
                 <button className="btn btn-primary">Register</button>
               </div>
             </form>
@@ -72,6 +92,7 @@ const Login = () => {
               >
                 Go to log in
               </a>
+            <div className="text-center"><SocialLogin></SocialLogin></div>
             </div>
           </div>
         </div>
