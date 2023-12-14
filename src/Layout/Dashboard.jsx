@@ -9,6 +9,8 @@ import useCart from "../hooks/useCart";
 
 const Dashboard = () => {
   const [cart] = useCart()
+  const isAdmin = true
+
   return (
     <div>
       <div className="drawer lg:drawer-open">
@@ -31,6 +33,20 @@ const Dashboard = () => {
           ></label>
           <ul className="menu p-4 w-80 min-h-full bg-base-200 text-base-content">
             {/* Sidebar content here */}
+            {isAdmin ? <>
+              <li>
+              <Link><MdHome></MdHome>Admin Home</Link>
+            </li>
+            <li>
+              <Link><FaCalendarAlt></FaCalendarAlt>Add items</Link>
+            </li>
+            <li>
+              <Link><MdOutlinePayment></MdOutlinePayment>Manage items</Link>
+            </li>
+            <li>
+            <Link to="users"><BsFillCartDashFill />All users</Link>
+            </li>
+            </> : <>
             <li>
               <Link><MdHome></MdHome>User Home</Link>
             </li>
@@ -43,6 +59,7 @@ const Dashboard = () => {
             <li>
             <Link to="/dashboard/my-cart"><BsFillCartDashFill /> My Cart #{cart?.length || 0}</Link>
             </li>
+            </>}
             <div className="divider"></div>
             <li>
               <Link to="/"><MdHome></MdHome>Home</Link>
