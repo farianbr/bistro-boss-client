@@ -1,5 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import { FaTrashAlt, FaUserShield } from "react-icons/fa";
+import Swal from "sweetalert2";
 
 const AllUsers = () => {
   const { data: users = [], refetch } = useQuery({
@@ -10,12 +11,40 @@ const AllUsers = () => {
     },
   });
 
-  const handleMakeAdmin = (id) => {
-    console.log(id);
+  const handleMakeAdmin = (user) => {
+    console.log(user);
+    fetch(`http://localhost:3000/admin/users/${user._id}`,{
+      method: "PATCH"
+    })
+    .then(res => res.json())
+    .then(data => {
+      if(data.modifiedCount>0){
+        refetch()
+        Swal.fire({
+          title: `${user.name} is now an Admin!`,
+          text: "Go Sultans!",
+          icon: "success",
+        });
+      }
+    })
   };
 
-  const handleDeleteUser = (id) => {
-    console.log(id);
+  const handleDeleteUser = (user) => {
+    console.log(user);
+    fetch(`http://localhost:3000/admin/users/${user._id}`,{
+      method: "DELETE"
+    })
+    .then(res => res.json())
+    .then(data => {
+      if(data.deletedCount>0){
+        refetch()
+        Swal.fire({
+          title: `${user.name} is no more an user!`,
+          text: "Go Sultans!",
+          icon: "success",
+        });
+      }
+    })
   };
 
   return (
@@ -40,15 +69,16 @@ const AllUsers = () => {
                 <td>{user.name}</td>
                 <td>{user.email}</td>
                 <td>
-                  <button
-                    onClick={() => handleMakeAdmin(user._id)}
+                  {user.role === "admin" ? "Admin" : <button
+                    title="Make Admin"
+                    onClick={() => handleMakeAdmin(user)}
                     className="btn btn-ghost "
                   >
                     <FaUserShield />
-                  </button>
+                  </button>}
                 </td>
                 <td><button
-                      onClick={() => handleDeleteUser(user._id)}
+                      onClick={() => handleDeleteUser(user)}
                       className="btn btn-ghost "
                     >
                       <FaTrashAlt />

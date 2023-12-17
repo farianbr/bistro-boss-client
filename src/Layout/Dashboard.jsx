@@ -6,10 +6,15 @@ import { FaCalendarAlt } from "react-icons/fa";
 import { IoMenu } from "react-icons/io5";
 import { FaShoppingBag } from "react-icons/fa";
 import useCart from "../hooks/useCart";
+import { useContext } from "react";
+import { AuthContext } from "../providers/AuthProvider";
+import useUsers from "../hooks/useUsers";
 
 const Dashboard = () => {
   const [cart] = useCart()
-  const isAdmin = true
+  const {user} = useContext(AuthContext)
+  const allUsers = useUsers()
+  const currentUser = allUsers.filter(users => users.email === user.email)[0]
 
   return (
     <div>
@@ -33,7 +38,7 @@ const Dashboard = () => {
           ></label>
           <ul className="menu p-4 w-80 min-h-full bg-base-200 text-base-content">
             {/* Sidebar content here */}
-            {isAdmin ? <>
+            {currentUser?.role == "admin" ? <>
               <li>
               <Link><MdHome></MdHome>Admin Home</Link>
             </li>

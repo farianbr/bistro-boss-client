@@ -22,7 +22,7 @@ const MyCart = () => {
       <div className="uppercase text-2xl font-semibold flex justify-evenly items-center">
         <h2>Total Orders: {cart.length}</h2>
         <h2>Total Price: ${price}</h2>
-        <button className="btn btn-base text-lg font-semibold">Pay</button>
+        <button className="btn btn-base text-lg font-semibold">Check Out</button>
       </div>
       {cart.length > 0 && (
         <div className="overflow-x-auto">
